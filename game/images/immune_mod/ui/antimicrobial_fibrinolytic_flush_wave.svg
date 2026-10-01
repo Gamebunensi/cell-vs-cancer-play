@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="755" height="131" viewBox="0 0 755 131">
+  <defs>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#fff3a5" stop-opacity=".72"/>
+      <stop offset=".18" stop-color="#6fe2e0" stop-opacity=".88"/>
+      <stop offset=".72" stop-color="#41b9dc" stop-opacity=".82"/>
+      <stop offset="1" stop-color="#e4fbff" stop-opacity=".08"/>
+    </linearGradient>
+    <filter id="glow" x="-5%" y="-30%" width="110%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+  <path d="M5 80c80-41 137-22 206-4 76 20 141-26 216-9 77 18 150 35 323-6-69 58-159 60-245 38-88-22-155 24-241 11C169 95 95 120 5 80z" fill="url(#flow)" filter="url(#glow)" opacity=".7"/>
+  <path d="M3 72c80-36 139-15 207 1 76 18 142-25 218-8 78 18 150 31 322-7-74 48-161 51-247 30-87-21-156 24-240 10C170 83 94 109 3 72z" fill="url(#flow)" stroke="#e5feff" stroke-width="3"/>
+  <path d="M28 70c105-9 152 34 253 8 87-22 142 17 232 8 72-8 137-8 215-24" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".74"/>
+  <path d="M50 91c73-19 127 11 195 10M337 91c73-18 126 11 202 5M589 89c48-5 90-10 131-25" fill="none" stroke="#f3bd45" stroke-width="4" stroke-linecap="round" opacity=".72"/>
+  <g fill="#fff7b2" stroke="#d89726" stroke-width="1.5">
+    <circle cx="94" cy="64" r="5"/><circle cx="231" cy="91" r="4"/><circle cx="390" cy="68" r="5"/><circle cx="548" cy="91" r="4"/><circle cx="681" cy="65" r="5"/>
+  </g>
+</svg>

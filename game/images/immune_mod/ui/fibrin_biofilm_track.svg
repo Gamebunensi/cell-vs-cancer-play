@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="72" viewBox="0 0 150 72">
+  <defs>
+    <linearGradient id="matrix" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4fa89a" stop-opacity=".22"/>
+      <stop offset=".56" stop-color="#26776e" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#15544f" stop-opacity=".9"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-20%" width="120%" height="140%">
+      <feGaussianBlur stdDeviation="1.1"/>
+    </filter>
+  </defs>
+  <path d="M0 46c16-11 30-7 43-2 17 7 31 2 48-3 18-5 36-4 59 8v23H0z" fill="url(#matrix)"/>
+  <path d="M-8 39C20 18 34 62 61 35S103 51 130 28s35 7 42 11" fill="none" stroke="#f3cf78" stroke-width="6" stroke-linecap="round" opacity=".9"/>
+  <path d="M-4 55c23-18 42 8 63-9 22-17 39 9 61-7 11-8 22-6 35 3" fill="none" stroke="#fff0b4" stroke-width="3" stroke-linecap="round" opacity=".84"/>
+  <g fill="#e8b83f" stroke="#9a671b" stroke-width="1.5">
+    <circle cx="18" cy="49" r="5"/><circle cx="48" cy="37" r="4"/>
+    <circle cx="78" cy="52" r="5"/><circle cx="110" cy="34" r="4.5"/>
+    <circle cx="139" cy="51" r="5"/>
+  </g>
+  <path d="M0 67c28-5 52 2 77-1 29-4 48-4 73 0" fill="none" stroke="#133d3b" stroke-width="4" opacity=".42" filter="url(#soft)"/>
+</svg>

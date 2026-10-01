@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#153e43" /><meta name="description" content="进入微观世界，部署免疫细胞，守护健康组织。" />
+<title>细胞防线 · 免疫作战</title><link rel="icon" href="game/images/immune_mod/units/neutrophil.png" /><link rel="stylesheet" href="game/ImmuneHome.css?v=1" /><script src="game/js/immune_mod/ImmuneCampaign.js?v=1" defer></script><script src="game/js/immune_mod/ImmuneHome.js?v=1" defer></script>
+</head>
+<body>
+<header class="home-header"><a class="brand" href="./"><span class="brand-mark">✦</span>细胞防线<span class="brand-caption">免疫作战</span></a><nav><a href="#campaign">感染地图</a><button id="howToOpen">作战指南</button></nav></header>
+<main>
+<section class="hero" aria-labelledby="heroTitle"><div class="hero-art" aria-hidden="true"></div><div class="hero-copy"><p class="eyebrow"><span></span>一场发生在体内的守护行动</p><h1 id="heroTitle">小小细胞，<br />守住整个世界。</h1><p class="hero-description">集结你的免疫防线。穿过黏膜、血流与淋巴窦道，<br />让每一处健康组织，都有被守护的力量。</p><a class="primary-action" id="resumeGame" href="game/?level=immune-1">开始免疫作战 <span>→</span></a><p id="resumeCaption" class="resume-caption">从 1-1 · 第一处感染开始</p></div><div class="hero-note"><span class="pulse-dot"></span>健康组织 · 防御系统待命</div></section>
+<section class="campaign" id="campaign" aria-labelledby="campaignTitle"><div class="section-heading"><div><p class="eyebrow">CAMPAIGN / 免疫主线</p><h2 id="campaignTitle">沿着感染路径，一步步推进</h2></div><span id="campaignProgress" class="progress-summary">已完成 0 / 42</span></div><div id="chapterMap" class="chapter-map"></div></section>
+<section class="squad" aria-labelledby="squadTitle"><div><p class="eyebrow">你的第一支小队</p><h2 id="squadTitle">每个细胞，都有自己的本领。</h2><p>收集能量，部署防线，观察病原体的变化。<br />合适的配合，比单打独斗更有力量。</p></div><div class="squad-members"><article><img src="game/images/immune_mod/units/neutrophil.png" alt="中性粒细胞" /><h3>中性粒细胞</h3><p>迅速出击，释放杀菌颗粒</p></article><article><img src="game/images/immune_mod/units/vascular_entry.png" alt="供能微血管" /><h3>供能微血管</h3><p>持续补给，让防线站稳脚跟</p></article><article><img src="game/images/immune_mod/units/macrophage.png" alt="组织巨噬细胞" /><h3>组织巨噬细胞</h3><p>吞噬病原体，留出消化时间</p></article></div></section>
+</main>
+<footer><span>细胞防线 · 非商业开发原型</span><button id="creditsOpen">制作与许可</button></footer>
+<dialog id="howTo"><button class="dialog-close" aria-label="关闭作战指南">×</button><p class="eyebrow">FIELD GUIDE / 作战指南</p><h2>先补给，再建立防线。</h2><ol><li><strong>收集能量泡</strong><span>点击金色能量泡，增加部署所需的能量。</span></li><li><strong>选择并部署细胞</strong><span>点击细胞卡，再点击开放的组织格。看清费用和冷却。</span></li><li><strong>保护健康组织</strong><span>病原体从右侧进入，搭配输出、屏障和补给拦住它们。</span></li></ol><p class="dialog-note">进度保存在当前浏览器。首两关会带你熟悉操作；完成关卡后，下一处感染会开放。</p><a class="primary-action" href="game/?level=immune-1">进入 1-1 <span>→</span></a></dialog>
+<dialog id="credits"><button class="dialog-close" aria-label="关闭制作与许可">×</button><p class="eyebrow">制作与许可</p><h2>细胞防线</h2><p>免疫单位、组织场景与界面为本项目的游戏内容。核心运行代码继承了开源网页塔防项目，相关作者信息和许可随项目保留。</p><p class="dialog-note">非商业开发原型。生物学机制经过游戏化简化。</p><a href="docs/UPSTREAM_NOTICE.html">查看上游代码署名与许可说明</a></dialog>
+</body>
+</html>

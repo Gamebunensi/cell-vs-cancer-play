@@ -1,0 +1,625 @@
+<html lang="zh-CN">
+	<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#183f43" /><meta name="description" content="部署免疫细胞，守护健康组织。" />
+<title>细胞防线 · 免疫作战</title><link rel="icon" href="images/immune_mod/units/neutrophil.png" />
+<link rel="stylesheet" href="Custom.css" /><link rel="stylesheet" href="UI.css" /><link rel="stylesheet" href="ImmuneMod.css?immune-mod=23" />
+<script src="js/pako.js" defer></script><script src="js/msgpack.min.js" defer></script><script src="js/WebComponents.js" defer></script>
+</head>
+
+	<body class="immune-mod" id="dBody" topmargin="0" leftmargin="0" oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!--   <div id="preloader"> -->
+		<!--	    <div id="status" class="WindowFrame"></div> -->
+		<!--    </div> -->
+		<div id="dFlagMeter">
+			<div id="dFlagMeterTitle">
+				<div id="dFlagMeterTitleB"></div>
+				<div id="sFlagMeterTitleF"></div>
+			</div>
+			<div id="dFlagMeterContent">
+				<img id="imgFlagMeterEmpty" src="images/immune_mod/ui/progress_empty.svg" />
+				<img id="imgFlagMeterFull" src="images/immune_mod/ui/progress_full.svg" />
+				<img class="flag" id="imgFlag1" src="images/interface/FlagMeterParts2.png" />
+				<img class="flag" id="imgFlag2" src="images/interface/FlagMeterParts2.png" />
+				<img class="flag" id="imgFlag3" src="images/interface/FlagMeterParts2.png" />
+				<img class="flag" id="imgFlag4" src="images/interface/FlagMeterParts2.png" />
+				<img id="imgGQJC" src="images/interface/FlagMeterLevelProgress.png" />
+				<img id="imgFlagHead" src="images/interface/FlagMeterParts1.png" />
+			</div>
+		</div>
+		<div id="dCoinBank">
+			<div id="dCoinBankText">$999,990</div>
+		</div>
+		<div id="dSurface" class="WindowFrame">
+			<div id="iSurfaceBackground" hidden></div>
+			<div id="dPause">
+				<table border="0" width="434" cellspacing="0" cellpadding="0" height="484">
+					<tr>
+						<td width="107" height="142" valign="bottom">
+							<img border="0" src="images/interface/dialog_topleft.png" width="423" height="401" />
+						</td>
+					</tr>
+				</table>
+				<div class="list">
+					<div class="hidden" onclick="SetNone($('dSurface'), $('dPause'))"></div>
+					<div id="dPauseAD"></div>
+				</div>
+				<div class="button" onclick="ResetGame($('dMenu0'))">继续防守</div>
+			</div>
+			<div id="dZombieFail">
+				<table border="0" width="434" cellspacing="0" cellpadding="0" height="484">
+					<tr>
+						<td width="107" height="142" valign="bottom">
+							<img border="0" src="images/interface/dialog_topleft.png" width="423" height="401" />
+						</td>
+					</tr>
+				</table>
+				<div class="list">
+					<div class="hidden" onclick="SetNone($('dSurface'), $('dZombieFail'))"></div>
+					<div id="dZombieFailAD"></div>
+				</div>
+				<div class="button" onclick="ResetGame($('dMenu0'))">继续防守</div>
+			</div>
+			<div id="dSurfaceBack">
+				<div id="dHelp" onclick="HiddenHelp()"></div>
+				<div id="dOptionsMenuback">
+					<div id="dOptionsMenu">
+						<div class="OMd0">
+							<div class="OMd1">
+								<div>
+									<input type="checkbox" id="cAutoSun" value="1" onchange="CheckAutoSun(this)" />
+									<label for="cAutoSun" id="lAutoSun">
+										自动收集<img
+											src="images/immune_mod/ui/recruitment_orb.svg"
+											alt="能量泡"
+											style="width: 1.35em; vertical-align: middle; margin-left: 5px"
+										/>
+									</label>
+								</div>
+								<div>
+									<input type="checkbox" id="cSilence" value="1" onchange="PlaySound2('buttonclick')" />
+									<label for="cSilence" id="lSilence">
+										静音<img
+											src="images/interface/icon_musicnote.png"
+											alt="🔇"
+											style="width: 1.35em; vertical-align: middle; margin-left: 18.5px"
+										/>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="BigLevel button" onclick="ShowLevel()">免疫主线</div>
+
+						<img
+							src="images/interface/icon_sword.png"
+							alt="🎮"
+							style="
+								width: 1.5rem;
+								vertical-align: middle;
+								pointer-events: none;
+								height: 1.5rem;
+								margin-top: -33px;
+								margin-left: calc(50% - 4rem);
+							"
+						/>
+
+						<div class="BigLevel button" onclick="ShowSpeed()">速度</div>
+
+						<img
+							src="images/interface/icon_speed.png"
+							alt="⌛"
+							style="
+								width: 1.5rem;
+								vertical-align: middle;
+								pointer-events: none;
+								height: 1.5rem;
+								margin-top: -33px;
+								margin-left: calc(50% - 4rem);
+							"
+						/>
+
+						<div class="BigLevel button almanacButton" onclick="ViewHandBook()">免疫图鉴</div>
+
+						<img
+							src="images/interface/icon_plant.png"
+							alt="📖"
+							style="
+								width: 1.5rem;
+								vertical-align: middle;
+								pointer-events: none;
+								height: 1.5rem;
+								margin-top: -33px;
+								margin-left: calc(50% - 4rem);
+							"
+						/>
+
+						<div class="trophy" onclick="SelectModal('achievements')" style="display: none"></div>
+						<div class="BigLevel button" onclick="SelectModal(oS.Lvl)">重玩本关</div>
+
+						<img
+							src="images/interface/icon_exclamation.png"
+							alt="🔁"
+							style="
+								width: 1.5rem;
+								vertical-align: middle;
+								pointer-events: none;
+								height: 1.5rem;
+								margin-top: -33px;
+								margin-left: calc(50% - 4rem);
+							"
+						/>
+
+						<div
+							class="BigLevel button"
+							id="pauseHome"
+							onclick="
+								let oldLv = oS.Lvl;
+								SelectModal(0);
+								SetBlock($('dSurface'), $('iSurfaceBackground'));
+								ShowNameDiv();
+								oS.Lvl = oldLv;
+							"
+						>
+							Home
+						</div>
+
+						<img
+							src="images/interface/icon_house.png"
+							alt="🏠"
+							id="pauseHomeIcon"
+							style="
+								width: 1.5rem;
+								vertical-align: middle;
+								pointer-events: none;
+								height: 1.5rem;
+								margin-top: -33px;
+								margin-left: calc(50% - 4rem);
+							"
+						/>
+						<div
+							class="OptionsMenuButton"
+							style="margin-top: 20px"
+							onmousedown="OptionsMenuDown(this, $('sOptionsMenu'))"
+							onmouseup="
+								OptionsMenuUP(this, $('sOptionsMenu'));
+								HiddenOptions();
+								CheckAutoSun($('cAutoSun'));
+								CheckSilence($('cSilence'));
+							"
+						>
+							<span id="sOptionsMenu" class="OptionsMenuButtonSpan">继续防守</span>
+						</div>
+					</div>
+
+				</div>
+				<div id="dAdvSmallContainer" class="immune-panel"><div id="dAdvSmallTitle">感染地图</div><div class="list"><div class="title">上呼吸道</div><div class="lvl2"><button class="lvl" onclick="SelectModal('immune-1')">1-1</button><button class="lvl" onclick="SelectModal('immune-2')">1-2</button><button class="lvl" onclick="SelectModal('immune-3')">1-3</button><button class="lvl" onclick="SelectModal('immune-4')">1-4</button><button class="lvl" onclick="SelectModal('immune-5')">1-5</button><button class="lvl" onclick="SelectModal('immune-6')">1-6</button><button class="lvl" onclick="SelectModal('immune-7')">1-7</button><button class="lvl" onclick="SelectModal('immune-8')">1-8</button><button class="lvl" onclick="SelectModal('immune-9')">1-9</button><button class="lvl" onclick="SelectModal('immune-10')">1-10</button></div></div><div class="list"><div class="title">低灌注创面</div><div class="lvl2"><button class="lvl" onclick="SelectModal('immune-11')">2-1</button><button class="lvl" onclick="SelectModal('immune-12')">2-2</button><button class="lvl" onclick="SelectModal('immune-13')">2-3</button><button class="lvl" onclick="SelectModal('immune-14')">2-4</button><button class="lvl" onclick="SelectModal('immune-15')">2-5</button><button class="lvl" onclick="SelectModal('immune-16')">2-6</button><button class="lvl" onclick="SelectModal('immune-17')">2-7</button><button class="lvl" onclick="SelectModal('immune-18')">2-8</button><button class="lvl" onclick="SelectModal('immune-19')">2-9</button><button class="lvl" onclick="SelectModal('immune-20')">2-10</button></div></div><div class="list"><div class="title">血流通道</div><div class="lvl2"><button class="lvl" onclick="SelectModal('immune-21')">3-1</button><button class="lvl" onclick="SelectModal('immune-22')">3-2</button><button class="lvl" onclick="SelectModal('immune-23')">3-3</button><button class="lvl" onclick="SelectModal('immune-24')">3-4</button><button class="lvl" onclick="SelectModal('immune-25')">3-5</button><button class="lvl" onclick="SelectModal('immune-26')">3-6</button><button class="lvl" onclick="SelectModal('immune-27')">3-7</button><button class="lvl" onclick="SelectModal('immune-28')">3-8</button><button class="lvl" onclick="SelectModal('immune-29')">3-9</button><button class="lvl" onclick="SelectModal('immune-30')">3-10</button></div></div><div class="list"><div class="title">淋巴结窦道</div><div class="lvl2"><button class="lvl" onclick="SelectModal('immune-31')">4-1</button><button class="lvl" onclick="SelectModal('immune-32')">4-2</button><button class="lvl" onclick="SelectModal('immune-33')">4-3</button><button class="lvl" onclick="SelectModal('immune-34')">4-4</button><button class="lvl" onclick="SelectModal('immune-35')">4-5</button><button class="lvl" onclick="SelectModal('immune-36')">4-6</button><button class="lvl" onclick="SelectModal('immune-37')">4-7</button><button class="lvl" onclick="SelectModal('immune-38')">4-8</button><button class="lvl" onclick="SelectModal('immune-39')">4-9</button><button class="lvl" onclick="SelectModal('immune-40')">4-10</button></div></div><div class="list"><div class="title">循环液面</div><div class="lvl2"><button class="lvl" onclick="SelectModal('immune-41')">5-1</button><button class="lvl" onclick="SelectModal('immune-42')">5-2</button></div></div><button class="button" onclick="HiddenLevel()">继续防守</button></div>
+				<div id="dMiniSmallContainer" hidden></div>
+			</div>
+			<div id="dRiddleSmallContainer" hidden></div>
+		</div>
+		<div class="WindowFrame" id="dAll">
+			<div id="tGround"></div>
+			<div id="dCardList"></div>
+			<div id="dZombie"></div>
+			<div
+				id="bShowHandBook"
+				onmouseover="this.style.backgroundPosition = 'bottom'"
+				onmouseout="this.style.backgroundPosition = 'top'"
+				onclick="ViewHandBook()"
+			>
+				免疫图鉴
+			</div>
+			<div id="dSelectCard">
+				<div class="title"></div>
+				<div id="dPCard"></div>
+				<div class="bTitle">
+					<input class="button" onclick="ResetSelectCard()" type="button" value="清空" name="btnReset" id="btnReset" style="color: #fc6" />
+					<input
+						class="button"
+						onclick="oS.ScrollBack(LetsGO)"
+						type="button"
+						value="开始防守"
+						disabled="disabled"
+						name="btnOK"
+						id="btnOK"
+						style="color: #888"
+					/>
+				</div>
+			</div>
+			<div id="dTop">
+				<div id="dSunNum">
+					<span id="sSunNum"></span>
+				</div>
+				<div id="tdShovel">
+					<img id="imgShovel" src="images/immune_mod/ui/apoptosis_tool.svg" onmousedown="ChoseShovel(event)" />
+				</div>
+			</div>
+			<div id="dPZ"></div>
+		</div>
+		<div id="dMenu">
+			<div
+				id="dMenu0"
+				class="Menu"
+				onclick="
+					ClickMenu();
+					ShowSpeed();
+				"
+			>
+				速度
+			</div>
+			<div id="dMenu1" class="Menu" onclick="ClickMenu()">菜单</div>
+		</div>
+		<div id="dHandBook" class="WindowFrame">
+			<div class="title">免疫图鉴</div>
+			<div class="content">
+				<div>
+					<img
+						border="0"
+						src="images/immune_mod/units/neutrophil.png"
+						width="73"
+						height="74"
+						style="position: relative; left: 10px; object-fit: contain"
+					/><br />
+					<input class="button" type="button" value="查看免疫防线" name="btnViewPlant" id="btnViewPlant" onclick="InitHandBookPCard()" />
+				</div>
+				<div style="left: 50%; padding-top: 95px">
+					<img
+						border="0"
+						src="images/immune_mod/enemies/rhinovirus.png"
+						width="149"
+						height="130"
+						style="position: relative; right: 40px; object-fit: contain"
+					/><br />
+					<input class="button" type="button" value="查看病原体" name="btnViewZombie" id="btnViewZombie" onclick="InitHandBookZCard()" />
+				</div>
+			</div>
+			<div
+				class="close"
+				onmouseover="this.style.backgroundPosition = 'bottom'"
+				onmouseout="this.style.backgroundPosition = 'top'"
+				onclick="CloseHandBook()"
+			>
+				关闭
+			</div>
+		</div>
+		<div id="dHandBookPZ" class="Almanac_PlantBack WindowFrame">
+			<div id="dHandBookP">
+				<div class="title">免疫图鉴 · 防线</div>
+				<div id="dHandBookPCard"></div>
+				<div id="pPlantBack"></div>
+				<div id="pPlantCard"></div>
+				<div class="list">
+					<div id="pHandBookPlant"></div>
+					<div id="dHandBookPlantName"></div>
+					<div id="dProducePlant"></div>
+					<div class="cost_cool">
+						<span class="cost">能量：</span><span id="spSunNum"></span><span class="cool">冷却：</span><span id="spCoolTime"></span>
+					</div>
+				</div>
+			</div>
+			<div id="dHandBookZ">
+				<div class="title">免疫图鉴 · 病原体</div>
+				<div id="dHandBookZCard"></div>
+				<div id="pZombieBack"></div>
+				<div id="pZombieCard"></div>
+				<div class="list">
+					<div id="pHandBookZombie"></div>
+					<div id="dHandBookZombieName"></div>
+					<div id="dProduceZombie"></div>
+				</div>
+			</div>
+			<div class="dButton">
+				<div
+					class="button1"
+					onmouseover="this.style.backgroundPosition = 'bottom'"
+					onmouseout="this.style.backgroundPosition = 'top'"
+					onclick="ReturnHandBookInx()"
+				>
+					返回图鉴
+				</div>
+				<div
+					class="button2"
+					onmouseover="this.style.backgroundPosition = 'bottom'"
+					onmouseout="this.style.backgroundPosition = 'top'"
+					onclick="CloseHandBook()"
+				>
+					关闭
+				</div>
+			</div>
+		</div>
+		<div id="dNewPlant">
+			<div class="immune-reward-kicker">防线升级 · 感染已清除</div>
+			<div id="dNewPlantTitle">获得新的免疫卡！</div>
+			<div class="card">
+				<img id="iNewPlantCard" border="0" />
+			</div>
+			<div class="card">
+				<img id="iNewTrophy" border="0" />
+			</div>
+			<div id="dNewPlantName"></div>
+			<div id="immuneRewardStats"></div>
+			<div id="dNewPlantTooltip"></div>
+			<div
+				id="bMainMenu"
+				onmouseover="this.style.backgroundPosition = 'bottom'"
+				onmouseout="this.style.backgroundPosition = 'top'"
+				onclick="
+					if (oS.ImmuneMod) {
+						window.location.href = '../';
+						return;
+					}
+					oldLv = oS.Lvl;
+					SelectModal(0);
+					SetBlock($('dSurface'), $('iSurfaceBackground'));
+					oS.Lvl = oldLv;
+					document.querySelector('#btnNextLevel').click();
+				"
+				style="visibility: none; background-position: center top"
+			>
+				返回指挥中心
+			</div>
+			<input type="button" value="NEXT LEVEL!" name="btnNextLevel" id="btnNextLevel" />
+		</div>
+		<div id="dProcess">
+			<input class="button" type="button" value="关闭" onclick="SetHidden($('dProcess'))" style="margin-top: 410px" />
+			<script>
+				document.write(
+					'<a style="margin-left:50px;cursor:url(images/interface/Pointer.cur),pointer;color:#FF0;font-size:15px;text-decoration:none;font-weight:bold;display:none" target="_blank" ></a>'
+				);
+			</script>
+		</div>
+		<div class="WindowFrame" id="dSpeedContainerContainer">
+			<div id="dSpeedContainer">
+				<div class="speed-header">
+					<h3>作战速度</h3>
+					<button class="speed-close" onclick="HiddenSpeed()" aria-label="关闭">×</button>
+				</div>
+				<div class="speed-selector">
+					<label>选择作战节奏</label>
+					<div class="speed-buttons">
+						<button onclick="CSpeed(1, 20, 0.5)" class="speed-btn">0.5×</button>
+						<button onclick="CSpeed(1, 10, 1)" class="speed-btn">1×</button>
+						<button onclick="CSpeed(2, 10, 2)" class="speed-btn">2×</button>
+						<button onclick="CSpeed(5, 10, 5)" class="speed-btn">5×</button>
+						<button onclick="CSpeed(5, 5, 10)" class="speed-btn">10×</button>
+					</div>
+				</div>
+				<div class="speed-current">当前速度：<strong id="dDisplaySpeed">1</strong>×</div>
+				<div class="speed-info">
+					<p>先规划部署，再按自己的节奏迎战病原体。</p>
+				</div>
+				<div class="speed-actions">
+					<button onclick="HiddenSpeed()">关闭</button>
+					<button onclick="CSpeed(1, 10, 1)">恢复正常速度</button>
+				</div>
+			</div>
+		</div>
+		<div id="debugMenu" class="WindowFrame" style="left: calc(50% + 390px); width: 300px; overflow: visible"></div>
+		<!-- izombie lvl saving stuffs -->
+		<!--本网页来自江南游戏 || pvzweb.usa3v.net-->
+		<button id="changelog" style="z-index: 99999; position: relative; margin-top: 544px; left: 50%; margin-left: -400px; display: none">Changelog</button>
+		<svg style="width: 0; height: 0">
+			<defs>
+				<filter id="cardboard" x="-50%" y="-50%" width="200%" height="200%">
+					<feColorMatrix
+						type="matrix"
+						values="
+							1.25  0 0 0 0
+							0     0.788 0 0 0
+							0     0 0.627 0 0
+							0     0 0     1 0
+						"
+						result="coloredImage"
+					></feColorMatrix>
+
+					<feComponentTransfer in="coloredImage" result="brightenedImage">
+						<feFuncR type="linear" slope="0.9"></feFuncR>
+						<feFuncG type="linear" slope="0.9"></feFuncG>
+						<feFuncB type="linear" slope="0.9"></feFuncB>
+						<!-- Keep alpha unchanged -->
+						<feFuncA type="identity"></feFuncA>
+					</feComponentTransfer>
+
+					<feColorMatrix
+						type="matrix"
+						values="
+           					0.9801 0.0199 0.0000 0 0
+           					0.0000 0.9801 0.0199 0 0
+           					0.0000 0.0000 0.9801 0 0
+           					0      0      0      1 0
+        				"
+						in="brightenedImage"
+						result="sepiaEffect"
+					></feColorMatrix>
+
+					<feColorMatrix
+						type="matrix"
+						values="
+               				0.393  0.769  0.189  0  0
+               				0.349  0.686  0.168  0  0
+               				0.272  0.534  0.131  0  0
+               				0      0      0      1  0
+           				"
+						in="SourceGraphic"
+						result="fullSepia"
+					/>
+					<feBlend in="brightenedImage" in2="fullSepia" mode="normal" result="sepiaBlended" style="mix-blend-mode: lighten"></feBlend>
+
+					<feColorMatrix
+						type="matrix"
+						values="
+            				1.25  0 0 0 0
+            				0     0.788 0 0 0
+            				0     0 0.627 0 0
+            				0     0 0     1 0
+        				"
+						in="SourceGraphic"
+						result="coloredImage"
+					></feColorMatrix>
+					<feComponentTransfer in="coloredImage" result="processedImage">
+						<feFuncR type="linear" slope="0.9"></feFuncR>
+						<feFuncG type="linear" slope="0.9"></feFuncG>
+						<feFuncB type="linear" slope="0.9"></feFuncB>
+						<feFuncA type="identity"></feFuncA>
+					</feComponentTransfer>
+
+					<feGaussianBlur in="SourceAlpha" stdDeviation="0" result="blur1" />
+					<feOffset dx="-2" dy="-2" in="blur1" result="offsetBlur1" />
+					<feFlood flood-color="rgb(171, 135, 107)" result="shadowColor1" />
+					<feComposite in="shadowColor1" in2="offsetBlur1" operator="in" result="shadow1" />
+
+					<feGaussianBlur in="SourceAlpha" stdDeviation="0" result="blur2" />
+					<feOffset dx="4" dy="4" in="blur3" result="offsetBlur3" />
+					<feFlood flood-color="rgb(122, 86, 58)" result="shadowColor3" />
+					<feComposite in="shadowColor3" in2="offsetBlur3" operator="in" result="shadow3" />
+
+					<feGaussianBlur in="SourceAlpha" stdDeviation="0" result="blur3" />
+					<feOffset dx="2" dy="2" in="blur2" result="offsetBlur2" />
+					<feFlood flood-color="rgb(171, 135, 107)" result="shadowColor2" />
+					<feComposite in="shadowColor2" in2="offsetBlur2" operator="in" result="shadow2" />
+
+					<feMerge>
+						<feMergeNode in="shadow1" />
+						<feMergeNode in="shadow3" />
+						<feMergeNode in="shadow2" />
+						<feMergeNode in="processedImage" />
+					</feMerge>
+				</filter>
+			</defs>
+		</svg>
+		<svg style="width: 0; height: 0">
+			<defs>
+				<filter id="cardboardNoShadow" x="-50%" y="-50%" width="200%" height="200%">
+					<feColorMatrix
+						type="matrix"
+						values="
+							1.25  0 0 0 0
+							0     0.788 0 0 0
+							0     0 0.627 0 0
+							0     0 0     1 0
+						"
+						result="coloredImage"
+					></feColorMatrix>
+
+					<feComponentTransfer in="coloredImage" result="brightenedImage">
+						<feFuncR type="linear" slope="0.9"></feFuncR>
+						<feFuncG type="linear" slope="0.9"></feFuncG>
+						<feFuncB type="linear" slope="0.9"></feFuncB>
+						<!-- Keep alpha unchanged -->
+						<feFuncA type="identity"></feFuncA>
+					</feComponentTransfer>
+
+					<feColorMatrix
+						type="matrix"
+						values="
+           					0.9801 0.0199 0.0000 0 0
+           					0.0000 0.9801 0.0199 0 0
+           					0.0000 0.0000 0.9801 0 0
+           					0      0      0      1 0
+        				"
+						in="brightenedImage"
+						result="sepiaEffect"
+					></feColorMatrix>
+
+					<feColorMatrix
+						type="matrix"
+						values="
+               				0.393  0.769  0.189  0  0
+               				0.349  0.686  0.168  0  0
+               				0.272  0.534  0.131  0  0
+               				0      0      0      1  0
+           				"
+						in="SourceGraphic"
+						result="fullSepia"
+					/>
+					<feBlend in="brightenedImage" in2="fullSepia" mode="normal" result="sepiaBlended" style="mix-blend-mode: lighten"></feBlend>
+
+					<feColorMatrix
+						type="matrix"
+						values="
+            				1.25  0 0 0 0
+            				0     0.788 0 0 0
+            				0     0 0.627 0 0
+            				0     0 0     1 0
+        				"
+						in="SourceGraphic"
+						result="coloredImage"
+					></feColorMatrix>
+					<feComponentTransfer in="coloredImage" result="processedImage">
+						<feFuncR type="linear" slope="0.9"></feFuncR>
+						<feFuncG type="linear" slope="0.9"></feFuncG>
+						<feFuncB type="linear" slope="0.9"></feFuncB>
+						<feFuncA type="identity"></feFuncA>
+					</feComponentTransfer>
+				</filter>
+			</defs>
+		</svg>
+		<!-- cloudflare turnstile -->
+
+		<!-- storage utility -->
+		<script src="js/StorageUtil.js"></script>
+		<!-- cfunction -->
+		<script src="js/Cfunction.js?immune-mod=11"></script>
+		<script src="js/Welcome.js"></script>
+		<script src="js/Menus.js"></script>
+		<script src="js/Custom.js?immune-mod=2"></script>
+		<script src="js/Cheatcodes.js"></script>
+		<script src="js/CPlants.js" type="module"></script>
+		<script src="js/CZombie.js"></script>
+		<script src="js/IZombie.js"></script>
+		<script src="js/immune_mod/ImmuneCampaign.js?v=1"></script>
+<script src="js/immune_mod/ImmuneContent.js?immune-mod=25"></script>
+<script src="js/immune_mod/ImmunePresentation.js?v=4"></script>
+		<script>
+			// check if autoplay is allowed
+			let testAudio = new Audio("audio/achievement.mp3");
+			testAudio
+				.play()
+				.then(() => {
+					// autoplay is allowed, destroy the test audio element
+					testAudio.muted = true;
+					testAudio.src = "";
+					// init the game
+					$User.Client.PC && $User.HTTP
+						? ((oS.AutoSun = Math.floor(getCookie("JSPVZAutoSun"))) && ($("cAutoSun").checked = true),
+							(oS.Silence = Math.floor(getCookie("JSPVZSilence"))) && ($("cSilence").checked = true))
+						: ((oS.AutoSun = 1), ($("cAutoSun").checked = true), (oS.Silence = 0), ($("cSilence").checked = false));
+					InitGame();
+				})
+				.catch(() => {
+					// autoplay is not allowed, add the button to enable audio
+					const cover = document.createElement("div");
+					cover.style.width = "100%";
+					cover.style.height = "100%";
+					cover.className = "immune-entry-cover";
+					document.querySelector("#dAll").appendChild(cover);
+					const btnEnableAudio = document.createElement("button");
+					btnEnableAudio.classList.add("BigLevel", "button");
+					btnEnableAudio.style.width = "170px";
+					btnEnableAudio.style.position = "absolute";
+					btnEnableAudio.style.textAlign = "center";
+					btnEnableAudio.style.left = "50%";
+					btnEnableAudio.style.top = "50%";
+					btnEnableAudio.style.transform = "translate(-50%, -50%)";
+					btnEnableAudio.style.margin = "0";
+					btnEnableAudio.style.cursor = "url(images/interface/Pointer.cur), pointer";
+					btnEnableAudio.innerText = "进入感染区";
+					btnEnableAudio.onclick = () => {
+						// remove the cover
+						cover.remove();
+						// init the game
+						$User.Client.PC && $User.HTTP
+							? ((oS.AutoSun = Math.floor(getCookie("JSPVZAutoSun"))) && ($("cAutoSun").checked = true),
+								(oS.Silence = Math.floor(getCookie("JSPVZSilence"))) && ($("cSilence").checked = true))
+							: ((oS.AutoSun = 1), ($("cAutoSun").checked = true), (oS.Silence = 0), ($("cSilence").checked = false));
+						InitGame();
+
+						// remove the button
+						btnEnableAudio.remove();
+					};
+					document.querySelector("#dAll").appendChild(btnEnableAudio);
+				});
+		</script>
+	</body>
+</html>

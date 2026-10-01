@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="196" height="181" viewBox="0 0 196 181">
+  <defs>
+    <radialGradient id="charge" cx="58%" cy="49%" r="52%">
+      <stop stop-color="#fff7a8" stop-opacity=".86"/>
+      <stop offset=".42" stop-color="#f5a623" stop-opacity=".44"/>
+      <stop offset="1" stop-color="#e47822" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="101" cy="92" rx="84" ry="74" fill="url(#charge)" stroke="#efaa2f" stroke-width="4" stroke-dasharray="9 8"/>
+  <circle cx="101" cy="92" r="31" fill="none" stroke="#fff0a2" stroke-width="6" opacity=".75"/>
+  <g fill="#f3b52b" stroke="#174f68" stroke-width="2">
+    <circle cx="38" cy="60" r="6"/><circle cx="159" cy="59" r="6"/>
+    <circle cx="150" cy="132" r="5"/><circle cx="52" cy="137" r="5"/>
+  </g>
+</svg>

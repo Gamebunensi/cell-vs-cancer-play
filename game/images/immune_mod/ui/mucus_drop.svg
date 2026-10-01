@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 34 24">
+  <defs>
+    <linearGradient id="mucusDrop" x1="5" y1="3" x2="27" y2="21" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9FEFF"/>
+      <stop offset=".45" stop-color="#65E7EE"/>
+      <stop offset="1" stop-color="#28B8D4"/>
+    </linearGradient>
+  </defs>
+  <path d="M3 15c0-5.5 5.1-10 11.4-10h5.8C26.7 5 31 8.7 31 13.5S26.7 22 20.2 22h-5.8C8.1 22 3 19.3 3 15Z" fill="url(#mucusDrop)" stroke="#07566C" stroke-width="2.4"/>
+  <ellipse cx="13" cy="9.5" rx="4.5" ry="2.5" fill="#FFF" opacity=".8"/>
+  <circle cx="25.5" cy="15.5" r="2" fill="#B7F8FB"/>
+</svg>

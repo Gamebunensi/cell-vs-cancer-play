@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <defs>
+    <filter id="paperShadow" x="-20%" y="-20%" width="150%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#15384a" flood-opacity=".45"/>
+    </filter>
+    <pattern id="paperDots" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="4" r="1" fill="#d6bd78" opacity=".18"/>
+    </pattern>
+  </defs>
+  <g filter="url(#paperShadow)" transform="rotate(-1.5 450 300)">
+    <path d="M145 42h610l24 25v470l-27 22H147l-25-24V68z" fill="#fff4ca" stroke="#315b70" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M145 42h610l24 25v470l-27 22H147l-25-24V68z" fill="url(#paperDots)"/>
+    <path d="M174 100h552M174 168h552M174 236h552M174 304h552M174 372h552M174 440h552" stroke="#d7b96f" stroke-width="2" opacity=".42"/>
+    <circle cx="694" cy="105" r="43" fill="#8b64bb" stroke="#283e68" stroke-width="6"/>
+    <path d="M694 61V45m-29 25l-12-13m70 13l12-13m-86 48h-18m126 0h-18" stroke="#283e68" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="680" cy="100" r="7" fill="#fff"/>
+    <circle cx="708" cy="100" r="7" fill="#fff"/>
+    <path d="M676 122q18 14 36 0" fill="none" stroke="#283e68" stroke-width="5" stroke-linecap="round"/>
+    <text x="190" y="142" fill="#24485f" font-family="'Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="43" font-weight="800">给免疫防线：</text>
+    <text x="190" y="220" fill="#31566b" font-family="'Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="34" font-weight="700">你们守住了前面九关，</text>
+    <text x="190" y="286" fill="#31566b" font-family="'Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="34" font-weight="700">但第十关可不会排队进场！</text>
+    <text x="190" y="352" fill="#31566b" font-family="'Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="34" font-weight="700">准备接住一张又一张卡片吧。</text>
+    <text x="505" y="445" fill="#76509e" font-family="'Microsoft YaHei','Noto Sans CJK SC',sans-serif" font-size="31" font-weight="800">—— 病原体小队</text>
+    <g transform="translate(195 448)">
+      <circle cx="30" cy="30" r="24" fill="#7fcbb4" stroke="#283e68" stroke-width="5"/>
+      <circle cx="22" cy="27" r="4" fill="#283e68"/>
+      <circle cx="38" cy="27" r="4" fill="#283e68"/>
+      <path d="M21 41q9 6 18 0" fill="none" stroke="#283e68" stroke-width="4" stroke-linecap="round"/>
+      <path d="M30 6V-5M8 15l-8-7m52 7l8-7" stroke="#283e68" stroke-width="5" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

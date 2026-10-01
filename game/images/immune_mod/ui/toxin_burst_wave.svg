@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="306" height="300" viewBox="0 0 306 300">
+  <defs>
+    <radialGradient id="wave" cx="50%" cy="50%" r="50%">
+      <stop stop-color="#fff8b5" stop-opacity=".68"/>
+      <stop offset=".36" stop-color="#f7b631" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#e67a28" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="153" cy="150" r="137" fill="url(#wave)" stroke="#efae32" stroke-width="7" stroke-dasharray="16 12" opacity=".92"/>
+  <circle cx="153" cy="150" r="96" fill="none" stroke="#61d5dc" stroke-width="6" stroke-dasharray="9 13" opacity=".74"/>
+  <circle cx="153" cy="150" r="56" fill="none" stroke="#fff0a1" stroke-width="7" opacity=".72"/>
+  <g fill="#f4bd31" opacity=".8">
+    <circle cx="153" cy="36" r="8"/><circle cx="247" cy="87" r="7"/>
+    <circle cx="258" cy="190" r="8"/><circle cx="196" cy="248" r="7"/>
+    <circle cx="95" cy="244" r="8"/><circle cx="48" cy="177" r="7"/>
+    <circle cx="58" cy="86" r="8"/>
+  </g>
+</svg>
